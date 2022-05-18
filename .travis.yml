@@ -1,0 +1,13 @@
+sudo: required
+
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - echo "start creating an image with dockerfile"
+  - docker build -t pkimys/react004-1 -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true pkimys/react004-1 npm run test -- --coverage
