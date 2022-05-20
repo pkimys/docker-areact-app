@@ -1,13 +1,50 @@
+# 관리자 권한갖기
 sudo: required
 
+# 언어(플랫폼) 선택
 language: generic
 
+# 도거 환경 구성
 services:
   - docker
 
+# 스크립트를 실행할수 있는 환경 구성 - 스크립트 실행 전 세팅할 것들
 before_install:
   - echo "start creating an image with dockerfile"
   - docker build -t pkimys/react004-1 -f Dockerfile.dev .
 
+# 실행할 스크립트(테스트 실행)
 script:
   - docker run -e CI=true pkimys/react004-1 npm run test -- --coverage
+
+# 테스트 완료 후 할일
+after_success:
+  - echo "Test Success"
+
+# 배포 설정
+deploy:
+  # 외부 서비스(예, s3, elasticbeanstalk, firebase )
+  provider: elasticbeanstalk
+
+  # aws 서비스의 물리적 장소, ap-northeast-2 한국
+  region: ap-northeast-2
+
+  # 생성 어플리케이션 이름(엘라스틱인스톨에서 만든이름)
+  app: docker-react-app
+
+  # 생성 어플리케이션의 환경(엘라스틱인스톨에서 환경설정)
+  env: Dockerreactapp-env
+
+  # travisCI가 보내준 코드데이터가 S3에 저장됨(자동생성)
+  bucket_name: elasticbeanstalk-ap-northeast-2-213202304145
+
+  # 생성 어플리케이션 이름과 동일하게 설정
+  bucket_path: docker-react-app
+
+  # 언제 배포할 것인가
+  on:
+    # 마스터 브랜치에 업로드 될떄 배포한다
+    branch: master
+
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
