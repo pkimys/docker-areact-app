@@ -44,7 +44,7 @@ deploy:
   # 언제 배포할 것인가
   on:
     # 마스터 브랜치에 업로드 될떄 배포한다
-    branch: master
+    branch: deploy
 
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_ACCESS_KEY

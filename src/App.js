@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          내 컴퓨터에서 실서비스 배포까지
+          안녕
         </a>
       </header>
     </div>
