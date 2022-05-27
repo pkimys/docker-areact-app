@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          변경 전
+          Hello
         </a>
       </header>
     </div>
