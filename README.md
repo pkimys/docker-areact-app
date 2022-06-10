@@ -1,5 +1,3 @@
-# docker-react-app
-
 # 소개
 CI/CD 기능 확인 프로젝트
 + 프로세스(활용서비스) : 통합(gitHub) -> 빌드/테스트(travisCI) -> 서비스제공(AWS)
